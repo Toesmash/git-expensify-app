@@ -2,17 +2,17 @@
 
 exports[`Should render ExpenseListItem correctly 1`] = `
 <div>
+  <Link
+    replace={false}
+    to="/edit/1"
+  >
+    Gum
+     
+  </Link>
   <p>
-    <Link
-      replace={false}
-      to="/edit/1"
-    >
-      Gum
-    </Link>
+    1.95€
     , 
-    195
-    , 
-    0
+    01.01.1970
   </p>
 </div>
 `;
