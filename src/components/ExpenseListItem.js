@@ -8,7 +8,7 @@ numeral.register('locale', 'svk', {
         thousands: ',',
         decimal: '.'
     },
-    abbreviations: {
+    abbreviations: { 
         thousand: 'k',
         million: 'm',
         billion: 'b',

@@ -22,9 +22,9 @@ export const ExpenseList = (props) => (
     </div>
 );
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (reduxState) => {
     return {
-        expenses: selectExpenses(state.expenses, state.filters)
+        expenses: selectExpenses(reduxState.expenses, reduxState.filters)
     };
 };
 
