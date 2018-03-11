@@ -4,15 +4,15 @@ import numeral from 'numeral';
 import selectExpenses from '../selectors/expenses';
 import expensesTotal from '../selectors/expenses-total';
 
-export const ExpensesSummary = (props) => {
+export const ExpensesSummary = ({expensesTotal, expensesCount}) => {
    return (
       <div>
          {
-            props.expensesCount === 1 
+            expensesCount === 1 
             ? 
-            <p>Viewing {props.expensesCount} expense totaling {numeral(props.expenses/100).format('0,0[.]00$')}</p> 
+            <p>Viewing {expensesCount} expense totaling {numeral(expensesTotal/100).format('0,0[.]00$')}</p> 
             : 
-            <p>Viewing {props.expensesCount} expenses totaling {numeral(props.expenses/100).format('0,0[.]00$')}</p>
+            <p>Viewing {expensesCount} expenses totaling {numeral(expensesTotal/100).format('0,0[.]00$')}</p>
          }
       </div>
    );
@@ -20,7 +20,7 @@ export const ExpensesSummary = (props) => {
 
 const mapStateToProps = (reduxState) => {
    return {
-      expenses: expensesTotal(selectExpenses(reduxState.expenses, reduxState.filters)),
+      expensesTotal: expensesTotal(selectExpenses(reduxState.expenses, reduxState.filters)),
       expensesCount: (selectExpenses(reduxState.expenses, reduxState.filters)).length
    }
 };
