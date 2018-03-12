@@ -1,7 +1,7 @@
 import uuid from 'uuid';
 import database from '../firebase/firebase';
 
-// ADD_EXPENSE
+// ADDING EXPENSES ================================================
 export const addExpense = (expense) => ({
   type: 'ADD_EXPENSE',
   expense
@@ -26,13 +26,25 @@ export const startAddExpense = (expenseData = {}) => {
   };
 };
 
-// REMOVE_EXPENSE
+
+
+// REMOVE EXPENSES ================================================
 export const removeExpense = ({ id } = {}) => ({
   type: 'REMOVE_EXPENSE',
-  id
+  id: id
 });
 
-// EDIT_EXPENSE
+export const startRemoveExpense = ({ id }) => {
+  return (dispatch) => {
+    return database.ref(`expenses/${id}`).remove().then(() => {
+      dispatch(removeExpense({ id }))
+    });
+  };
+};
+
+
+
+// EDIT EXPENSES ================================================
 export const editExpense = (id, update) => ({
   type: 'EDIT_EXPENSE',
   id,
@@ -40,7 +52,8 @@ export const editExpense = (id, update) => ({
 });
 
 
-// SET_EXPENSES
+
+// SET EXPENSES ================================================
 export const setExpenses = (expenses) => ({
   type: 'SET_EXPENSES',
   expenses: expenses
@@ -59,38 +72,8 @@ export const startSetExpenses = () => {
             ...element.val()
           });
         });
-        
+
         dispatch(setExpenses(fetchExpenses));
       })
   };
 };
-
-
-
-
-
-// database.ref('expenses')
-//    .once('value')
-//    .then((snapshot) => {
-//       const expenses = [];
-//       snapshot.forEach(element => {
-//          expenses.push({
-//             id: element.key,
-//             ...element.val()
-//          })
-//       });
-
-//       console.log(expenses);
-//    });
-
-
-
-
-
-
-
-
-
-
-
-
