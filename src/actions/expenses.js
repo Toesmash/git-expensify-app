@@ -38,3 +38,59 @@ export const editExpense = (id, update) => ({
   id,
   update
 });
+
+
+// SET_EXPENSES
+export const setExpenses = (expenses) => ({
+  type: 'SET_EXPENSES',
+  expenses: expenses
+});
+
+export const startSetExpenses = () => {
+  return (dispatch) => {
+    const fetchExpenses = [];
+
+    return database.ref('expenses')
+      .once('value')
+      .then((snapshot) => {
+        snapshot.forEach(element => {
+          fetchExpenses.push({
+            id: element.key,
+            ...element.val()
+          });
+        });
+        
+        dispatch(setExpenses(fetchExpenses));
+      })
+  };
+};
+
+
+
+
+
+// database.ref('expenses')
+//    .once('value')
+//    .then((snapshot) => {
+//       const expenses = [];
+//       snapshot.forEach(element => {
+//          expenses.push({
+//             id: element.key,
+//             ...element.val()
+//          })
+//       });
+
+//       console.log(expenses);
+//    });
+
+
+
+
+
+
+
+
+
+
+
+
