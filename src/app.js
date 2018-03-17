@@ -22,12 +22,12 @@ import './styles/styles.scss';
 import { firebase } from './firebase/firebase';
 
 const store = configureStore();
+let hasRendered = false;
 const jsx = (
     <Provider store={store}>
         <AppRouter />
     </Provider>
 );
-let hasRendered = false;
 const renderApp = () => {
     if (!hasRendered) {
         ReactDOM.render(jsx, document.getElementById('app'));

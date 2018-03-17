@@ -10,6 +10,13 @@ if (process.env.NODE_ENV === 'test') {
 
 else if (process.env.NODE_ENV === 'development') {
     require('dotenv').config({ path: '.env.development' });
+
+    console.log("START");
+    console.log("NODE_ENV: ",process.env.NODE_ENV);
+    require('dotenv').config({path: path.join(__dirname, '.env.development')});
+    console.log(process.env);
+    console.log("END");
+
 }
 
 module.exports = (env) => {
